@@ -1,2 +1,1 @@
-# LIS500Collab
-Collab Repo for LIS500
+LIS500 Project #2
