@@ -19,6 +19,10 @@ a {
 a:hover { 
   text-decoration: underline; 
 }
+/* make links normal blue color */
+a:link {
+  color: #0000FF
+}
 
 /* keeps text from spanning the entire page */
 .content-wrap {
@@ -84,6 +88,11 @@ a:hover {
 /* centers content inside the content block */
 .content-block {
   text-align:center;
+}
+
+/* aligns paragraph/list text in a content block to the left */
+.content-block p, li {
+  text-align: left;
 }
 
 /* makes main heading italic */
