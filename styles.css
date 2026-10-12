@@ -23,12 +23,16 @@ a:hover {
 a:link {
   color: #0000FF
 }
+a:visited {
+  color: purple;
+}
 
 /* keeps text from spanning the entire page */
 .content-wrap {
   max-width: 950px;
   margin: 0 auto;
 }
+
 
 /* ----- HEADER ----- */
 
@@ -101,7 +105,7 @@ a:link {
   font-style: italic;
 }
 
-/* limits image size */ 
+/* limits image size and rounds the corners (of squared images)*/ 
 .sample-img {
   max-height: 500px;
   max-width: 500px;
