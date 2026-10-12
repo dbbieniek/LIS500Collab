@@ -105,6 +105,7 @@ a:link {
 .sample-img {
   max-height: 500px;
   max-width: 500px;
+  border-radius: 15px;
 }
 
 /* ----- FOOTER ----- */
