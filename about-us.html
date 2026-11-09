@@ -2,54 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- The viewport tag makes the page scale correctly on phones and tablets. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About Us - LIS500</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main>
-  <!-- This is the header for the site. -->
-  <header class="site-header">
-    <div class="content-wrap header-inner">
-      <nav class="site-nav site-nav-left">
-        <a href="index.html" class="btn btn-blue">Home</a>
-        <a href="about-us.html" class="btn btn-blue">About Us</a>
-      </nav>
-      <div class="banner">LIS500 Project Site</div>
-      <nav class="site-nav site-nav-right">
-        <a href="implicit-bias.html" class="btn btn-blue">Implicit Bias Guide</a>
-        <a href="tech-heros.html" class="btn btn-blue">Tech Heroes</a>
-      </nav>
-</div>
-  </header>
-
-<!-- Blurb/Content Block -->
-  <div class="content-wrap">
-    <div class="content-block">
-      <h1>About Us!</h1>
-      <p><strong>Dominic Bieniek</strong></p>
-      <p>I'm Dominic, a senior at UW-Madison. I enjoy sports (Brewers, Packers, Bucks), music, hiking, cooking, and video games. I am taking LIS 500 to fulfill my last requirements for graduation, as well as to gain a grasp on inclusive design elements.</p>
-      <!-- (Dominic) Adding visuals to 'about-us' page per feedback comment -->
-      <img class="sample-img " src="images/aboutdominic.jpg" alt="Picture of Dominic.">
-      <br/>
-      <p><strong>Lainey Becker</strong></p>
-      <p>Hi! I'm Lainey, a senior at UW-Madison who enjoys cybersecurity, music, baking, sports, and video games. I'm taking LIS 500 to learn how to make intentional design choices in web development that are inclusive and helpful rather than harmful for diverse users.</p>
-      <img class="sample-img " src="images/cropped-osk.jpeg" alt="Picture of Lainey.">
-    </div>
+<!-- Lets users jump past the navigation straight to the main content. -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- This is the header for the site. -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="banner">LIS500 Project Site</div>
+    <!-- This is the row of buttons on the header and footer. Marks the page you are on. -->
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" class="btn">Home</a>
+      <a href="about-us.html" class="btn" aria-current="page">About Us</a>
+      <a href="implicit-bias.html" class="btn">Implicit Bias Guide</a>
+      <a href="tech-heros.html" class="btn">Tech Heroes</a>
+      <a href="teachable-machines.html" class="btn">Teachable Machines</a>
+    </nav>
   </div>
-
-</main>
-<!-- This is the footer for the site. --> 
-<footer class="site-footer">
-  <div class="content-wrap footer-inner">
-    <div class="footer-text">
-      <p>© 2026 Dominic Bieniek, Lainey Becker</p>
+</header>
+<!-- The main element wraps the unique content of each page. -->
+<main id="main">
+<!-- Blurb/Content Block -->
+<!-- (Dominic) Adding visuals to 'about-us' page per feedback comment. Each person now has a profile card with the photo beside the bio. -->
+<section class="block"><div class="wrap">
+  <article class="profile"><div class="split">
+    <figure style="margin:0"><img class="photo" src="images/aboutdominic.jpg" alt="Picture of Dominic."></figure>
+    <div>
+      <h2>Dominic Bieniek</h2>
+      <p>I'm Dominic, a senior at UW-Madison. I enjoy sports (Brewers, Packers, Bucks), music, hiking, cooking, and video games. I am taking LIS 500 to fulfill my last requirements for graduation, as well as to gain a grasp on inclusive design elements.</p>
     </div>
-<!--This is the row of buttons on the header and footer. -->
-    <nav class="footer-nav">
-        <a href="index.html" class="btn btn-blue">Home</a>
-        <a href="about-us.html" class="btn btn-blue">About Us</a>
-        <a href="implicit-bias.html" class="btn btn-blue">Implicit Bias Guide</a>
-        <a href="tech-heros.html" class="btn btn-blue">Tech Heroes</a>
+  </div></article>
+  <article class="profile"><div class="split flip">
+    <figure style="margin:0"><img class="photo" src="images/cropped-osk.jpeg" alt="Picture of Lainey."></figure>
+    <div>
+      <h2>Lainey Becker</h2>
+      <p>Hi! I'm Lainey, a senior at UW-Madison who enjoys cybersecurity, music, baking, sports, and video games. I'm taking LIS 500 to learn how to make intentional design choices in web development that are inclusive and helpful rather than harmful for diverse users.</p>
+    </div>
+  </div></article>
+</div></section>
+</main>
+<!-- This is the footer for the site. It repeats the navigation buttons so visitors who reach the bottom of a page do not need to scroll back up. -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© 2026 Dominic Bieniek, Lainey Becker</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html" class="btn">Home</a>
+      <a href="about-us.html" class="btn">About Us</a>
+      <a href="implicit-bias.html" class="btn">Implicit Bias Guide</a>
+      <a href="tech-heros.html" class="btn">Tech Heroes</a>
+      <a href="teachable-machines.html" class="btn">Teachable Machines</a>
     </nav>
   </div>
 </footer>

@@ -1,146 +1,139 @@
+
+/* 
+   Colors and fonts are stored once as variables so the palette stays consistent. */
+:root{
+  --ink:#12303A; --muted:#4B636B; --teal-dark:#0F4C5C; --teal:#55BEC4;
+  --teal-tint:#E4F4F5; --paper:#F7FAFA; --white:#fff; --amber:#F2B134; --line:#CFE3E5;
+  --serif:Georgia,"Times New Roman",serif; --sans:"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
 /* ----- Global styles ----- */
-/* border box fix */
-* { box-sizing: border-box; }
+/* border box fix: padding and borders count toward an element's width */
+*{box-sizing:border-box}
 
-/* sets default styling of text on linked pages */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  color: Black;
-  background: white;
-}
+/* sets default styling of text on linked pages: serif body text with extra line height so long paragraphs are easier to read */
+body{margin:0;font-family:var(--serif);font-size:1.05rem;line-height:1.7;color:var(--ink);background:var(--paper)}
 
-  /* sets link color to match the element it's inside 
-    also removes their underline until hovered.*/
-a { 
-  color: inherit; text-decoration: none; 
-}
-a:hover { 
-  text-decoration: underline; 
-}
-/* make links normal blue color */
-a:link {
-  color: #0000FF
-}
-a:visited {
-  color: purple;
-}
+/* images never grow wider than the column they sit in, which keeps photos from overflowing on small screens */
+img{max-width:100%;height:auto;display:block}
 
-/* keeps text from spanning the entire page */
-.content-wrap {
-  max-width: 950px;
-  margin: 0 auto;
-}
+/* sets link color for the whole site. */
+a{color:var(--teal-dark);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:#000}
+
+/* outline shows people who navigate with the tab key where they are on the page */
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+/* "skip to content" link */
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;background:var(--white);padding:8px 12px;z-index:10}
+
+/* keeps text from spanning the entire page (max width of 1000px, centered, with side padding so text never touches the screen edge) */
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 
 
 /* ----- HEADER ----- */
 
-.site-header {
-  border-bottom: 1px solid lightgrey;
-  background: rgb(209, 209, 210);;
-}
+/* bar that stays pinned to the top while scrolling, with a line along the bottom edge */
+.site-header{background:var(--teal-dark);color:var(--white);position:sticky;top:0;z-index:5;border-bottom:4px solid var(--teal)}
 
-/* aligns header items and adds spacing around them */
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 0;
-}
+/* aligns header items and adds spacing around them. */
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
 
 /* large and bold title */
-.banner {
-  font-size: 28px;
-  font-weight: bold ;
-}
+.banner{font-family:var(--sans);font-weight:700;font-size:1.3rem;letter-spacing:.01em}
 
-/* styles navigation links in the header */
-.site-nav a {
-  margin-left: 18px;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
-}
+/* lays out the navigation links in a row with small gaps between them */
+.site-nav,.footer-nav{display:flex;flex-wrap:wrap;gap:6px}
 
 
 /* ----- BUTTONS ----- */
 
 /* sets spacing and shape of buttons */
-.btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 3px;
-  font-size: 14px;
-  margin: 6px;
-}
+.btn{font-family:var(--sans);font-size:.9rem;font-weight:600;text-decoration:none;padding:8px 14px;border-radius:6px;color:var(--white);background:transparent;transition:background .15s}
 
-/* sets button color */
-.btn-blue {
-  background: #55BEC4;
-  color: white;
-  border: none;
-}
+/* adds a light highlight when hovered */
+.btn:hover{background:rgba(255,255,255,.16);color:var(--white);text-decoration:none}
 
-/* makes button slightly transparent when hovered */
-.btn:hover {
-  opacity: 0.85;
-}
+/* sets button color for the page you are currently on */
+.btn[aria-current="page"]{background:var(--teal);color:var(--ink)}
+
+
+/* ----- HERO and PAGE TITLE BANDS ----- */
+
+/* home page opening section */
+.hero{background:linear-gradient(180deg,var(--teal-tint),var(--paper));padding:56px 0 48px}
+
+/* two columns on the home page */
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+
+/* main page headings */
+.hero h1,.page-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.15;margin:0 0 14px;color:var(--teal-dark)}
+
+/* intro sentence under a main heading */
+.hero .lede,.lede{font-size:1.2rem;color:var(--muted);margin:0 0 20px}
+
+/* band holding the title on the inner pages */
+.page-head{background:var(--teal-tint);padding:40px 0 28px;border-bottom:1px solid var(--line)}
+.page-head .lede{margin:0;max-width:60ch}
+
 
 /* ----- CONTENT ----- */
-/* centers content inside the content block */
-.content-block {
-  text-align:center;
-}
 
-/* aligns paragraph/list text in a content block to the left */
-.content-block p, li {
-  font-family: "Georgia", Georgia, 'Times New Roman', Times, serif;
-  text-align: left;
-}
+/* each section.block is one content block, separated from the next by a thin line. */
+section.block{padding:44px 0;border-bottom:1px solid var(--line)}
+section.block:last-of-type{border-bottom:0}
 
-/* makes main heading italic */
-.content-block h1{
-  font-style: italic;
-}
+/* heading levels */
+h2{font-family:var(--sans);font-size:1.5rem;color:var(--teal-dark);margin:0 0 6px;padding-left:12px;border-left:5px solid var(--amber)}
+h3{font-family:var(--sans);font-size:1.15rem;margin:0 0 6px;color:var(--ink)}
 
-/* limits image size and rounds the corners (of squared images)*/ 
-.sample-img {
-  max-height: 500px;
-  max-width: 500px;
-  border-radius: 15px;
-}
+/* short paragraph under a section heading*/
+.section-intro{color:var(--muted);margin:0 0 24px;max-width:65ch}
+
+/* side-by-side layouts */
+.split{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
+.split.flip{grid-template-columns:1fr 260px}
+.split.flip figure{order:2}
+.split.wide{grid-template-columns:1fr 1fr;align-items:center}
+
+/* limits image size and rounds the corners*/
+.photo{width:100%;border-radius:12px;border:4px solid var(--white);box-shadow:0 4px 14px rgba(15,76,92,.18);object-fit:cover}
+
+/* three equal columns for the key-term cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* white card with a teal top edge */
+.card{background:var(--white);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:8px;padding:20px}
+.card p{margin:0}
+
+/* white box that holds one person's photo on About Us */
+.profile{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:24px}
+
+/* resource link list */
+.resources{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.resources li{background:var(--white);border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:6px;padding:14px 18px}
+.resources a{font-family:var(--sans);font-weight:700}
+.resources p{margin:2px 0 0;color:var(--muted)}
+
 
 /* ----- FOOTER ----- */
 
-.site-footer {
-  background: beige;
-  border-top: 1px solid #eee;
-  padding: 24px 0;
-}
-
-/* styles footer navigation links */
-.footer-nav a {
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
-}
+/* dark footer with light gray text for contrast */
+.site-footer{background:var(--ink);color:#C5D6DA;padding:28px 0;font-family:var(--sans);font-size:.85rem}
 
 /* arranges footer elements */
-.footer-inner {
-  display: flex;
-  gap: 24px;
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-inner p{margin:0}
+
+/* styles footer navigation links */
+.site-footer .btn{color:#C5D6DA;padding:6px 10px}
+
+
+/* ----- MOBILE  ----- */
+@media(max-width:760px){
+  .hero-grid,.split,.split.flip,.split.wide,.grid-3{grid-template-columns:1fr}
+  .split.flip figure{order:0}
+  .split figure{max-width:320px}
+  .header-inner{justify-content:center;text-align:center}
 }
-
-/* sets appearance of the footer text and spaces it */
-.footer-text {
-  max-width: 360px;
-  color: Gray;
-  font-size: 12px;
-  margin-left: 10px;
-}
-
-
-

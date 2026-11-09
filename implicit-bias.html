@@ -2,61 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- The viewport tag makes the page scale correctly on phones and tablets. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Implicit Bias Guide - LIS500</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main>
-  <!-- This is the header for the site. -->
-  <header class="site-header">
-    <div class="content-wrap header-inner">
-      <nav class="site-nav site-nav-left">
-        <a href="index.html" class="btn btn-blue">Home</a>
-        <a href="about-us.html" class="btn btn-blue">About Us</a>
-      </nav>
-      <div class="banner">LIS500 Project Site</div>
-      <nav class="site-nav site-nav-right">
-        <a href="implicit-bias.html" class="btn btn-blue">Implicit Bias Guide</a>
-        <a href="tech-heros.html" class="btn btn-blue">Tech Heroes</a>
-      </nav>
-</div>
-  </header>
-
-<!-- Blurb/Content Block -->
-  <div class="content-wrap">
-    <div class="content-block">
-      <!-- (Dominic) Adding more context to the implicit bias page and links per feedback comment -->
-      <h1>Implicit Bias Resource Guide</h1>
-      <p><strong>Implicit Bias</strong> is an unconscious belief about a social group that influences how one perceives and behaves toward others. People may not be aware that they hold them or recognize how they affect their actions. Implicit bias can influence decisions and interactions in areas like education, employment, healthcare, and technology, leading to unfair treatment or discrimination. Recognizing these biases is an important step toward understanding how they affect judgments and working to reduce their influence.</p>
-      <p>The <strong>Implicit Bias Test</strong> is a psychological assessment that measures implicit biases towards different social groups. It is designed to reveal automatic associations between concepts, such as social groups and positive or negative characteristics, that a person may not consciously recognize. The test typically measures how quickly someone categorizes words or images, using differences in reaction times to identify potential biases.</p>
-      <p><strong>Intersectionality</strong> is the idea that one's experiences are shaped by several different factors, such as race, gender, class, and sexuality. These factors can overlap and interact with one another, creating unique experiences of privilege, discrimination, or inequality. A person's experiences may differ depending on how their race and gender intersect, rather than being shaped by either factor alone. Intersectionality helps explain why individuals within the same social groups may face different challenges.</p>
-      <br/>
-      <p>To learn more about these terms, explore the following resources:</p>
-      <ul>
-        <li><a href="https://www.perception.org/research/implicit-bias/" rel="noreferrer noopener">Implicit Bias Explained - Perception Institute</a></li>
-        <p>Explains implicit bias, what it is, and why it matters.</p>
-        <li><a href="https://www.americanbar.org/groups/litigation/about/diversity/task-force-implicit-bias/implicit-bias-test/" rel="noreferrer noopener">Implicit Bias Test - American Bar Association</a></li>
-        <p>The American Bar Association's page for the implicit bias test.</p>
-        <li><a href="https://www.aaup.org/academe/issues/104-4/what-intersectionality-and-why-it-important" rel="noreferrer noopener">Intersectionality - American Association of University Professors</a></li>
-        <p>Explains what intersectionality is, and why it's important.</p>
-      </ul>
-      <img class="sample-img " src="images/implicit-biasplaceholder.jpg" alt="Intersectionality diagram">
-    </div>
+<!-- Lets users jump past the navigation straight to the main content. -->
+<a class="skip" href="#main">Skip to content</a>
+<!-- This is the header for the site. -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="banner">LIS500 Project Site</div>
+        <!-- This is the row of buttons on the header and footer. Marks the page you are on. -->
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" class="btn">Home</a>
+      <a href="about-us.html" class="btn">About Us</a>
+      <a href="implicit-bias.html" class="btn" aria-current="page">Implicit Bias Guide</a>
+      <a href="tech-heros.html" class="btn">Tech Heroes</a>
+      <a href="teachable-machines.html" class="btn">Teachable Machines</a>
+    </nav>
   </div>
-
+</header>
+<!-- The main element wraps the unique content of each page. -->
+<main id="main">
+<!-- Page title band: a short heading and one-line introduction. -->
+<div class="page-head"><div class="wrap"><h1 class="page-title">Implicit Bias Resource Guide</h1><p class="lede">Three key terms for understanding how bias shapes people and technology.</p></div></div>
+<!-- Blurb/Content Block -->
+<!-- (Dominic) Adding more context to the implicit bias page and links per feedback comment. The three definitions are now side-by-side cards so they can be compared at a glance -->
+<section class="block"><div class="wrap">
+  <h2>Key terms</h2>
+  <p class="section-intro">Each idea below connects to how unfair treatment can show up in education, employment, healthcare, and technology.</p>
+  <div class="grid-3">
+    <div class="card"><h3>Implicit Bias</h3><p>An unconscious belief about a social group that influences how one perceives and behaves toward others. People may not be aware they hold these beliefs or how they affect their actions, which can lead to unfair treatment or discrimination. Recognizing them is an important step toward reducing their influence.</p></div>
+    <div class="card"><h3>Implicit Bias Test</h3><p>A psychological assessment that measures implicit biases toward different social groups. It reveals automatic associations between concepts, such as social groups and positive or negative traits, by measuring how quickly someone categorizes words or images.</p></div>
+    <div class="card"><h3>Intersectionality</h3><p>The idea that experiences are shaped by several overlapping factors, such as race, gender, class, and sexuality. These interact to create unique experiences of privilege, discrimination, or inequality, which helps explain why people in the same social group can face different challenges.</p></div>
+  </div>
+</div></section>
+<!-- Second content block: the resource list on the left and the intersectionality diagram on the right. -->
+<section class="block"><div class="wrap split wide">
+  <div>
+    <h2>Learn more</h2>
+    <p class="section-intro">Explore these resources to go deeper on each term.</p>
+    <ul class="resources">
+      <li><a href="https://www.perception.org/research/implicit-bias/"><p>Explains implicit bias, what it is, and why it matters.</p></li>
+      <li><a href="https://www.americanbar.org/groups/litigation/about/diversity/task-force-implicit-bias/implicit-bias-test/"><p>The American Bar Association's page for the implicit bias test.</p></li>
+      <li><a href="https://www.aaup.org/academe/issues/104-4/what-intersectionality-and-why-it-important"><p>Explains what intersectionality is, and why it's important.</p></li>
+    </ul>
+  </div>
+  <img class="photo" src="images/implicit-biasplaceholder.jpg" alt="Intersectionality diagram">
+</div></section>
 </main>
-<!-- This is the footer for the site. --> 
+<!-- This is the footer for the site. It repeats the navigation buttons so visitors who reach the bottom of a page do not need to scroll back up. -->
 <footer class="site-footer">
-  <div class="content-wrap footer-inner">
-    <div class="footer-text">
-      <p>© 2026 Dominic Bieniek, Lainey Becker</p>
-    </div>
-<!--This is the row of buttons on the header and footer. -->
-    <nav class="footer-nav">
-        <a href="index.html" class="btn btn-blue">Home</a>
-        <a href="about-us.html" class="btn btn-blue">About Us</a>
-        <a href="implicit-bias.html" class="btn btn-blue">Implicit Bias Guide</a>
-        <a href="tech-heros.html" class="btn btn-blue">Tech Heroes</a>
+  <div class="wrap footer-inner">
+    <p>© 2026 Dominic Bieniek, Lainey Becker</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html" class="btn">Home</a>
+      <a href="about-us.html" class="btn">About Us</a>
+      <a href="implicit-bias.html" class="btn">Implicit Bias Guide</a>
+      <a href="tech-heros.html" class="btn">Tech Heroes</a>
+      <a href="teachable-machines.html" class="btn">Teachable Machines</a>
     </nav>
   </div>
 </footer>
