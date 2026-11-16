@@ -26,7 +26,41 @@
 </header>
 <!-- The main element wraps the unique content of each page. -->
 <main id="main">
-
+<!-- Page title band: a short heading and one-line introduction. -->
+<div class="page-head"><div class="wrap"><h1 class="page-title">Teachable Machines</h1><p class="lede">Try our image model live.</p></div></div>
+<!-- Blurb/Content Block -->
+<!-- Project Overview block: placeholder. Add a short summary of the project here (what the model does, how it was trained, and which image classes it recognizes) using paragraphs under the heading. -->
+<section class="block"><div class="wrap">
+  <h2>Project Overview</h2>
+  <p>Both group members contributed 100 original photos of clothing items in order to train a Google Teachable Machine image classification model. </p> 
+  <p>The images were given one of two classifications; Summer or Winter. </p>
+  <p>We were interested in getting a better understanding of how AI systems recognize size, shape, and color, and thinking about how these factors can propegate biases, stereotypes, and inequality within programs. </p>
+  <p></p>
+</div></section>
+<!-- Blurb/Content Block -->
+<!-- Demo block: instructions and the Start button on the left, the webcam picture and prediction results on the right. The two empty containers (webcam-container and label-container) are filled in by the script at the bottom of this page after the visitor clicks Start. -->
+<section class="block"><div class="wrap split wide">
+  <div>
+    <h2>Test the model</h2>
+    <p class="section-intro">Click the button to test the model. Your browser will ask for permission to use your webcam. Hold a piece of clothing in view of the webcam.</p>
+    <button type="button" id="toggle-btn" class="btn btn-solid" onclick="toggleCamera()">Start</button>
+    <p id="status" class="status" role="status"></p>
+  </div>
+  <div class="demo">
+    <div id="webcam-container"></div>
+    <div id="label-container"></div>
+  </div>
+</div></section>
+<!-- Blurb/Content Block -->
+<!-- Demo Video block: placeholder. Add a video of the project here later, for example an embedded video with a title and a text description or captions so the content is accessible to everyone. -->
+<section class="block"><div class="wrap">
+  <h2>Demo Video</h2>
+</div></section>
+<!-- Blurb/Content Block -->
+<!-- Project Statement block: placeholder. Add the written project statement here later, using paragraphs under the heading and more h3 headings if it needs sub-sections. -->
+<section class="block"><div class="wrap">
+  <h2>Project Statement</h2>
+</div></section>
 </main>
 <!-- This is the footer for the site.-->
 <footer class="site-footer">
@@ -42,5 +76,101 @@
   </div>
 </footer>
 
+<!-- Teachable Machine libraries.  -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+<script>
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+
+    const MODEL_PATH = "./my_model/";
+
+    let model, webcam, labelContainer, maxPredictions;
+    let running = false;   // true while the camera is on
+    let frameId = null;    // id of the pending animation frame, so Stop can cancel it
+
+
+    function toggleCamera() {
+        if (running) stopCamera(); else init();
+    }
+
+    // Turn the camera on
+    async function init() {
+        const btn = document.getElementById("toggle-btn");
+        const status = document.getElementById("status");
+        btn.disabled = true; // blocks extra clicks while the model loads
+        status.textContent = "Loading model...";
+        try {
+            // load the model only the first time; later Starts reuse it
+            if (!model) {
+                model = await tmImage.load(MODEL_PATH + "model.json", MODEL_PATH + "metadata.json");
+                maxPredictions = model.getTotalClasses();
+            }
+
+            // set up the webcam: width, height, flip (mirrors it like a selfie)
+            webcam = new tmImage.Webcam(300, 300, true);
+            await webcam.setup(); // asks the visitor for camera permission
+            await webcam.play();
+            running = true;
+            frameId = window.requestAnimationFrame(loop);
+
+            // add the webcam picture and one result row per class label
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) {
+                const row = document.createElement("div");
+                row.className = "label-row";
+                row.innerHTML = '<div class="label-name"><span></span><span></span></div><div class="bar"><span></span></div>';
+                labelContainer.appendChild(row);
+            }
+            btn.textContent = "Stop camera";
+            btn.disabled = false;
+            status.textContent = "";
+        } catch (err) {
+            // most likely causes: camera blocked, or model files not found
+            console.error(err);
+            status.textContent = "Could not start. Allow camera access and make sure the model files are in the my_model folder.";
+            btn.disabled = false;
+        }
+    }
+
+    // Turn the camera off
+    function stopCamera() {
+        running = false;                       // tells loop() and predict() to stop
+        window.cancelAnimationFrame(frameId);
+        if (webcam) webcam.stop();             // releases the camera so its light goes off
+        document.getElementById("webcam-container").innerHTML = "";
+        document.getElementById("label-container").innerHTML = "";
+        document.getElementById("toggle-btn").textContent = "Start";
+        document.getElementById("status").textContent = "Camera off.";
+    }
+
+    // runs once per animation frame: refresh the picture, then predict
+    async function loop() {
+        if (!running) return;
+        webcam.update();
+        await predict();
+        if (running) frameId = window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the model and update each result row
+    async function predict() {
+        const prediction = await model.predict(webcam.canvas);
+        if (!running) return; // camera was stopped while predicting
+        for (let i = 0; i < maxPredictions; i++) {
+            const pct = Math.round(prediction[i].probability * 100);
+            const name = prediction[i].className;
+            const row = labelContainer.childNodes[i];
+            const bar = row.querySelector(".bar span");
+            row.querySelectorAll(".label-name span")[0].textContent = name;
+            row.querySelectorAll(".label-name span")[1].textContent = pct + "%";
+            bar.style.width = pct + "%";
+            // color the bar by class name: summer = red, winter = blue
+            bar.classList.toggle("bar-summer", name.toLowerCase().includes("summer"));
+            bar.classList.toggle("bar-winter", name.toLowerCase().includes("winter"));
+        }
+    }
+</script>
 </body>
 </html>

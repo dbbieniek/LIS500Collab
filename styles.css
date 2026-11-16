@@ -137,3 +137,35 @@ h3{font-family:var(--sans);font-size:1.15rem;margin:0 0 6px;color:var(--ink)}
   .split figure{max-width:320px}
   .header-inner{justify-content:center;text-align:center}
 }
+
+/* ----- TEACHABLE MACHINES ----- */
+
+
+.btn-solid{background:var(--teal-dark);color:var(--white);border:0;padding:12px 22px;font-size:1rem;cursor:pointer}
+.btn-solid:hover{background:var(--ink)}
+.btn-solid:disabled{opacity:.6;cursor:default}
+
+/* small status message under the button ("Loading model...", errors) */
+.status{font-family:var(--sans);color:var(--muted);margin:12px 0 0}
+
+/* white card that holds the webcam picture and the prediction results */
+.demo{background:var(--white);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:8px;padding:20px;min-height:260px}
+#webcam-container canvas{border-radius:8px;max-width:100%;height:auto;margin-bottom:14px}
+
+
+.label-row{margin-bottom:10px;font-family:var(--sans);font-size:.95rem}
+.label-name{display:flex;justify-content:space-between}
+.bar{height:10px;background:var(--teal-tint);border-radius:5px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--teal)}
+
+/* outlined version of .btn-solid for secondary actions such as Stop
+   camera; sits next to the Start button without competing with it */
+.btn-outline{background:transparent;color:var(--teal-dark);border:2px solid var(--teal-dark);padding:10px 20px;font-size:1rem;cursor:pointer;margin-left:8px}
+.btn-outline:hover{background:var(--teal-tint);color:var(--teal-dark)}
+.btn-outline:disabled{opacity:.5;cursor:default}
+
+/* bar colors for the two classes in our model: summer is red and winter
+   is blue. The script adds these classes by matching the class name
+   (not case sensitive); any other class keeps the default teal bar */
+.bar span.bar-summer{background:#D62828}
+.bar span.bar-winter{background:#1D5FD6}
