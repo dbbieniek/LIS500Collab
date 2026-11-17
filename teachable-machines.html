@@ -33,8 +33,10 @@
 <section class="block"><div class="wrap">
   <h2>Project Overview</h2>
   <p>Both group members contributed 100 original photos of clothing items in order to train a Google Teachable Machine image classification model. </p> 
-  <p>The images were given one of two classifications; Summer or Winter. </p>
-  <p>We were interested in getting a better understanding of how AI systems recognize size, shape, and color, and thinking about how these factors can propagate biases, stereotypes, and inequality within programs. </p>
+  <p>The images were given one of two classifications; <strong>Summer</strong> or <strong>Winter</strong> Apparel. </p>
+  <p>We chose seasonal clothing because we wanted to see how the training data would impact the model's ability to classify gender-specific clothing styles accurately and reveal any biases, stereotypes, or inequalities. </p>
+  <br>
+  <p>For more information, read the <strong>Project Statement</strong> below!
   <p></p>
 </div></section>
 <!-- Blurb/Content Block -->
@@ -60,6 +62,34 @@
 <!-- Project Statement block: placeholder. Add the written project statement here later, using paragraphs under the heading and more h3 headings if it needs sub-sections. -->
 <section class="block"><div class="wrap">
   <h2>Project Statement</h2>
+    <p>For our Teachable Machine project, we trained an image classifier to sort clothing into two categories: Summer Apparel and Winter Apparel. We chose seasonal clothing because while some things like heavy jackets, hats, and mittens are considered Winter clothing, there is some gray area with items that can be worn year-round depending on the weather or personal preference, like with leggings and joggers. Beyond testing whether the model could recognize seasonal material and cuts, we also wanted to see how the training data would impact its ability to classify gender-specific clothing styles accurately.</p> 
+  <h3>Building the Dataset</h3>
+    <p>We built our model using Google’s Teachable Machine, which relies on transfer learning from MobileNet (a neural network pre-trained on the very large ImageNet dataset). Because we didn't build the underlying algorithm from scratch and were unaware of what images MobileNet was originally trained on, we were curious to see what hidden assumptions might surface once we added our own data.</p>
+    <p>To build our dataset, each of us took 50 photos of summer clothes and 50 photos of winter clothes directly from our own closets using our phone cameras. While convenient, pulling only from our own clothing options naturally narrowed the scope of our data:</p>
+      <ul>
+        <li><strong>Local and generational bias:</strong> Since we are both UW-Madison students, our dataset was heavily skewed toward the fashion styles common among Midwestern college students. Our corpus includes lots of local sports team merchandise, hoodies, athletic shorts, and denim.</li>
+        <li><strong>Inconsistent picture quality:</strong> Because we took the photos separately in different environments, the dataset contains variations in lighting, camera distance, and color distortion.</li>
+      </ul>
+  <h3>Training & Testing</h3>
+    <p>When we first trained the model using only the first batch of 100 images, accuracy was a struggle. Almost every time we held a summer t-shirt up to the webcam, the model would confidently label the item as "Winter." Furthermore, because that initial batch came entirely from a man's closet, the algorithm often classified women’s summer clothing inaccurately.</p>
+    <p>Once we added the second batch of 100 images from a woman’s closet, overall accuracy improved. Even so, the model would still occasionally misclassify some blouses and tank tops, revealing how sensitive the classifier was to variations in style.</p>
+    <p>Live webcam testing also revealed some interesting observations:</p>
+      <ul>
+      <li><strong>Blanket Recognition:</strong> Whenever I stepped out of the camera frame without holding up any clothes, the model immediately defaulted to "Winter." We eventually realized it was reading a heavy blanket draped behind me that only became visible when I moved out of the way.</li>
+      <li><strong>Lighting Sensitivity:</strong> Testing the model in a dimly lit room or with a warm lamp caused its decision to swing back and forth, whereas bright, natural daylight yielded much more stable results.</li>
+      <li><strong>Clothes on Body</strong> When we tried pointing the camera at the outfits we were actually wearing, the model could not settle on an answer, rapidly switching between summer and winter. The clothing items seemed to be classified quickly and accurately with a plain background, but if there were other figures present (including a human body), the model would have more difficulty deciding. </li>
+    </ul>
+  <h3>The Politics of Sorting</h3>
+    <p>Working through these bugs reinforced concepts from Joy Buolamwini’s <em>Unmasking AI</em>. Dr. Buolamwini emphasizes that classification systems do not passively observe the world; they actively sort, categorize, and impose rigid boundaries onto fluid human experiences. Forcing clothes into strict summer/winter classifications meant omitting spring and autumn from the picture, as well as the reality of functional layering.</p>
+    <p>For instance, leggings are often worn year-round, yet a two-category classifier requires a definitive label. If we put leggings in our "Winter" training folder, the machine would likely treat them as strictly winter apparel. This emphasizes one of the crucial concepts of this course in terms of code and power: whoever labels the training data holds the authority to define reality for the algorithm.</p>
+    <p>At the same time, Meredith Broussard and Joy Buolamwini warn against technochauvinism, which is the habit of blindly treating computational outputs as objective truth. Watching our model display a "100% Winter" confidence score for a blanket in the background of the frame clearly proves this point. Percentage is not an objective measurement of seasonal utility; it is merely a statistical reflection of how closely pixels on a webcam match a small, curated set of photos.</p>
+  <h3>Key Takeaways from <em>Unmasking AI</em></h3>
+    <p>Building the classifier model allowed us to witness and apply important concepts from our course readings. Three lessons from Dr. Buolamwini’s book resonated most strongly as we worked through this project:</p>
+      <ol>
+        <li><strong>The "Coded Gaze":</strong> Dr. Buolamwini disputes the myth that code is purely mathematical and free from human bias, arguing that every step of the machine learning process is shaped by human judgment. We started this project assuming "summer" and "winter" clothes were self-evident categories. Yet the moment we started pulling items from our closets, we realized we were embedding our own "coded gaze" into the dataset, shaped by a climate-biased, Midwestern college lifestyle. Thus, the algorithm was actively perpetuating our local cultural habits.</li>
+        <li><strong>The "Excoded":</strong> A major theme in Unmasking AI is how unrepresentative datasets marginalize outliers (whom Dr. Buolamwini calls the "excoded”). Just as early photography calibration tools like Polaroid "Shirley cards" were standardized around lighter skin tones, causing cameras and facial recognition systems to fail on darker skin, our initial dataset was standardized around a single man's wardrobe. When our model failed to recognize women's blouses or tank tops and would struggle with non-Western summer garments, we saw how easily dataset homogeneity creates exclusivity in the algorithm.</li>
+        <li><strong>Actionable Auditing:</strong> Dr. Buolamwini’s path from discovering a facial detection blind spot while wearing a white mask to founding the Algorithmic Justice League shows that broken systems do not self-correct without deliberate, actionable auditing. Instead of celebrating our model's high training accuracy and calling it a day, we intentionally tested edge cases. We tested its perception in bad lighting, we tried wearing the clothes instead of holding them up, and we checked what happened when the frame was empty. Those stress-tests exposed how heavily the model relied on lighting and background shortcuts. Responsible AI work requires that same mindset; we must constantly interrogate what a system gets wrong, and recognize who gets left out when those classifications are given authority.</li>
+      </ol>
 </div></section>
 </main>
 <!-- This is the footer for the site.-->
